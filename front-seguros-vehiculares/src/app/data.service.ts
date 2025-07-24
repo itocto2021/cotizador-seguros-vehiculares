@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class DataService {
 
-  dataUrl= 'https://apimanager-lucasfariapp.wiremockapi.cloud/v1/profile';
+  dataUrl= '';
 
   constructor(private http: HttpClient) { }
 

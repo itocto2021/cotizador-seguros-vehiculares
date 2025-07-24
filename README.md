@@ -76,11 +76,16 @@ Ejecutar toda la solución
 Desde la raíz del proyecto (donde está el archivo docker-compose.yml):
 ---
 ```bash
+#Opcióonal si se desea compilar el backend en local, si no le dara error al ejecutar el docker-compose
+docker run -d --name postgres-db --network seguros-net -e POSTGRES_USER=itocto -e POSTGRES_PASSWORD=Sistema2026 -e POSTGRES_DB=mibanco -p 5433:5432 postgres:16
+
 # Ingresar al backend
 cd cotizador-seguros-vehiculares
 
 # Abrir terminal y ejecutar Docker Compose
 docker-compose up --build
+
+#Nota: Si ya se ba a ejecutar en docker deter la base de datos postgres para evitar conflictos de puertos
 ```
 ### Servicios Disponibles
 
