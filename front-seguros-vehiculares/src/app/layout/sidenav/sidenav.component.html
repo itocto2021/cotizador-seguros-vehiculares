@@ -1,0 +1,21 @@
+<div class="sidebar shadow-sm" [ngClass]="{ 'showSidebar': isSidebarVisible, 'hideSidebar': !isSidebarVisible }" [@fadeInOut]>
+
+  <span class="text-primary d-flex my-4 justify-content-center">
+    <img src="../../../assets/logo.png" width="100" height="80" alt="">
+  </span>
+    <ul>
+      <li>
+        <a routerLink="/home" routerLinkActive="active">
+          <span class="menu-icon material-icons">request_quote</span>
+          <span class="menu-text">Cotizar</span>
+        </a>
+      </li>
+      <li>
+        <a routerLink="//vehicles" routerLinkActive="active">
+          <span class="menu-icon material-icons">directions_car</span> 
+          <span class="menu-text">Vehículos</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+

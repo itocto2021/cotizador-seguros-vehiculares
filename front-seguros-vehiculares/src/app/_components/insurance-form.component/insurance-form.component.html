@@ -1,0 +1,77 @@
+<form [formGroup]="insuranceForm" (ngSubmit)="onSubmit()" class="form-container" style="display: flex; flex-direction: column; gap: 16px;">
+  <!-- Primera fila: 3 formularios -->
+  <div style="display: flex; gap: 16px;">
+    <mat-form-field appearance="fill" style="flex: 1;">
+      <mat-label>Marca</mat-label>
+      <mat-select formControlName="brand" (selectionChange)="onBrandChange($event.value)">
+        <mat-option *ngFor="let brand of brands" [value]="brand">{{ brand }}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="insuranceForm.get('brand')?.hasError('required')">Marca requerida</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" style="flex: 1;">
+      <mat-label>Modelo</mat-label>
+      <mat-select formControlName="model" [disabled]="!filteredModels.length">
+        <mat-option *ngFor="let model of filteredModels" [value]="model">{{ model }}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="insuranceForm.get('model')?.hasError('required')">Modelo requerido</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" style="flex: 1;">
+      <mat-label>Tipo de uso</mat-label>
+      <mat-select formControlName="usageType">
+        <mat-option value="personal">Personal</mat-option>
+        <mat-option value="trabajo">Trabajo</mat-option>
+        <mat-option value="carga">Carga</mat-option>
+      </mat-select>
+      <mat-error *ngIf="insuranceForm.get('usageType')?.hasError('required')">Tipo de uso requerido</mat-error>
+    </mat-form-field>
+  </div>
+
+  <!-- Segunda fila: 2 formularios -->
+  <div style="display: flex; gap: 16px;">
+    <mat-form-field appearance="fill" style="flex: 1;">
+      <mat-label>Año</mat-label>
+      <input matInput formControlName="year" type="number" />
+      <mat-error *ngIf="insuranceForm.get('year')?.hasError('required')">Año requerido</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" style="flex: 1;">
+      <mat-label>Edad del conductor</mat-label>
+      <input matInput formControlName="driverAge" type="number" />
+      <mat-error *ngIf="insuranceForm.get('driverAge')?.hasError('required')">Edad requerida</mat-error>
+    </mat-form-field>
+  </div>
+
+  <!-- Botones alineados en una fila -->
+  <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 16px;" *ngIf="quoteResult || true">
+    <button mat-stroked-button color="accent" type="button" (click)="resetForm()">
+      <mat-icon>refresh</mat-icon>
+      Nuevo Cálculo
+    </button>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="insuranceForm.invalid">
+      Calcular Seguro
+    </button>
+  </div>
+
+</form>
+<mat-card *ngIf="quoteResult" class="quote-card">
+  <mat-card-header>
+    <div mat-card-avatar class="quote-avatar"></div>
+    <mat-card-title class="quote-title">Resultado del Seguro</mat-card-title>
+  </mat-card-header>
+  <hr>
+  <mat-card-content>
+    <div class="quote-row">
+      <p><strong>Costo Total:</strong> {{ quoteResult.totalPremium | currency }}</p>
+      <p><strong>Costo Base:</strong> {{ quoteResult.basePrice | currency }}</p>
+    </div>
+    <p class="ajustes-title"><strong>Detalles:</strong></p>
+    <ul class="ajustes-list">
+      <li *ngFor="let adj of quoteResult.adjustments">{{ adj }}</li>
+    </ul>
+  </mat-card-content>
+</mat-card>
+
+

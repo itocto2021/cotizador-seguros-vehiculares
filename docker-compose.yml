@@ -1,0 +1,31 @@
+services:
+  backend:
+    build: ./com.seguros.vehiculares
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/mibanco
+      - SPRING_DATASOURCE_USERNAME=itocto
+      - SPRING_DATASOURCE_PASSWORD=Sistema2026
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.PostgreSQLDialect
+    depends_on:
+      - db
+      - redis
+  frontend:
+    build: ./front-seguros-vehiculares
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: mibanco
+      POSTGRES_USER: itocto
+      POSTGRES_PASSWORD: Sistema2026
+  redis:
+    image: redis:7
+    ports:
+      - "6379:6379"

@@ -1,0 +1,9 @@
+<div class="vehicle-grid">
+  <mat-card *ngFor="let v of vehicles" class="vehicle-card mat-elevation-z4">
+    <img mat-card-image [src]="v.fotoUrl" alt="{{ v.marca }} {{ v.modelo }}">
+    <mat-card-content>
+      <h3 class="vehicle-title">{{ v.marca }} {{ v.modelo }}</h3>
+      <p class="vehicle-price">Precio desde: <strong>{{ v.precioDesde | currency:'USD' }}</strong></p>
+    </mat-card-content>
+  </mat-card>
+</div>

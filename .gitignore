@@ -1,24 +1,83 @@
-# Compiled class file
+# ===============================
+# ✅ ARCHIVOS GENERALES A IGNORAR
+# ===============================
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+*.bak
+*.swp
+*.swo
+
+# ===============================
+# ✅ IGNORAR CARPETAS COMUNES
+# ===============================
+.idea/
+.vscode/
+.env
+.env.*
+*.iml
+*.ipr
+*.iws
+
+# ===============================
+# 📦 NODE / ANGULAR (FRONTEND)
+# ===============================
+node_modules/
+dist/
+.angular/
+coverage/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# Angular build output
+/build/
+/out-tsc/
+/src/environments/environment*.ts
+
+# ===============================
+# ☕ JAVA / SPRING BOOT (BACKEND)
+# ===============================
+# Maven
+target/
+!.mvn/wrapper/maven-wrapper.jar
+**/logs/
+**/target/
+
+# Gradle
+.gradle/
+build/
 *.class
 
-# Log file
-*.log
+# IDEs
+*.classpath
+*.project
+*.settings/
+*.factorypath
 
-# BlueJ files
-*.ctxt
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
+# Compiled JARs, WARs
 *.jar
 *.war
-*.nar
 *.ear
-*.zip
-*.tar.gz
-*.rar
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-replay_pid*
+# Lombok
+*.lombok
+
+# Spring Boot dev tools
+.spring-boot-devtools.properties
+
+# Database & Cache
+*.h2.db
+*.mv.db
+*.sqlite
+*.log.db
+
+# ===============================
+# 🚫 CI/CD TEMP
+# ===============================
+tmp/
+temp/
+.cache/
+build.log
